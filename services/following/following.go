@@ -53,7 +53,7 @@ func GetFollowing(token string, params Params) ([]Following, error) {
 	return result, nil
 }
 
-func Unfollow(token string, f Following) error {
+func UnFollow(token string, f Following) error {
 	baseURL := "https://api.github.com/user/following/" + f.Login
 
 	u, err := url.Parse(baseURL)
@@ -64,7 +64,7 @@ func Unfollow(token string, f Following) error {
 	q := u.Query()
 	u.RawQuery = q.Encode()
 
-	req, err := http.NewRequest("PUT", u.String(), nil)
+	req, err := http.NewRequest("DELETE", u.String(), nil)
 	if err != nil {
 		return err
 	}
