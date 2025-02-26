@@ -33,6 +33,15 @@ func (c *GithubClient) GetFollowing(params following.Params) ([]following.Follow
 	return followings, nil
 }
 
+func (c *GithubClient) Follow(f following.Following) error {
+	err := following.Follow(c.Token, f)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (c *GithubClient) UnFollow(f following.Following) error {
 	err := following.UnFollow(c.Token, f)
 	if err != nil {
